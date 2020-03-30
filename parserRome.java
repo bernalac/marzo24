@@ -6,11 +6,10 @@ import com.rometools.rome.io.XmlReader;
 import com.rometools.rome.feed.synd.SyndEntry;
 import java.util.List;
 import java.util.ArrayList;
-
+import java.util.stream.Stream;
 
 public class parserRome {
 	public static void main(String[] args) {
-		boolean ok = false;
 
 		try {
 			URL feedURL = new URL("https://www.lavanguardia.com/mvc/feed/rss/home");
@@ -18,31 +17,28 @@ public class parserRome {
 			SyndFeedInput input = new SyndFeedInput();
 			SyndFeed feed = input.build(new XmlReader(feedURL));
 			System.out.println(feed.getTitle());
-			List<SyndEntry> synd = feed.getEntries();
-				for (SyndEntry entry : synd) {
-				  System.out.println("Título de la noticia: ");
-				  System.out.println(entry.getTitle());
-				  System.out.println("Link de la noticia: ");
-				  System.out.println(entry.getLink());
-				  System.out.println("Descripción de la noticia: ");
-				  System.out.println(entry.getDescription().getValue());
-				  System.out.println();
-				}
+			List<SyndEntry> synd = new ArrayList<SyndEntry>();
+			synd = feed.getEntries();
+				//for (SyndEntry entry : synd) {
+				  //System.out.println("Título de la noticia: ");
+				  //System.out.println(entry.getTitle());
+				  //System.out.println("Link de la noticia: ");
+				  //System.out.println(entry.getLink());
+				  //System.out.println("Descripción de la noticia: ");
+				  //System.out.println(entry.getDescription().getValue());
+				  //System.out.println();
+				//}
+			Stream<SyndEntry> stream = synd.stream();
+			stream
+			.limit(5)
+			.forEach(s -> System.out.println("\nTítulo de la noticia: \n" + s.getTitle() + "\n Link de la noticia: \n" + s.getLink() + "\n Descripción de la noticia: \n" + s.getDescription().getValue() + "\n"));
 
-
-			ok = true;
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
 			System.out.println("ERROR: " + ex.getMessage());
 		}
 
-		if (!ok) {
-			System.out.println();
-			System.out.println("FeedReader reads and prints any RSS/Atom feed type,");
-			System.out.println("The first parameter must be the URL of the feed to read,");
-			System.out.println();
-		}
 
 	}
 }
