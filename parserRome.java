@@ -3,6 +3,10 @@ import java.io.InputStreamReader;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import com.rometools.rome.feed.synd.SyndEntry;
+import java.util.List;
+import java.util.ArrayList;
+
 
 public class parserRome {
 	public static void main(String[] args) {
@@ -13,9 +17,17 @@ public class parserRome {
 
 			SyndFeedInput input = new SyndFeedInput();
 			SyndFeed feed = input.build(new XmlReader(feedURL));
-
 			System.out.println(feed.getTitle());
-			System.out.println(feed.getEntry());
+			List<SyndEntry> synd = feed.getEntries();
+				for (SyndEntry entry : synd) {
+				  System.out.println("Título de la noticia: ");
+				  System.out.println(entry.getTitle());
+				  System.out.println("Link de la noticia: ");
+				  System.out.println(entry.getLink());
+				  System.out.println("Descripción de la noticia: ");
+				  System.out.println(entry.getDescription().getValue());
+				  System.out.println();
+				}
 
 
 			ok = true;
