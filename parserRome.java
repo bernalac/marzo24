@@ -31,19 +31,21 @@ public class parserRome {
 
 
 		try {
-			  URL feedURL = new URL("https://www.lavanguardia.com/mvc/feed/rss/home");
-
-			  //Feed
-			  SyndFeedInput input = new SyndFeedInput();
-			  SyndFeed feed = input.build(new XmlReader(feedURL));
-			  System.out.println(feed.getTitle());
-			  //Lista  que tiene el retorno de getEntries
-			  List<SyndEntry> synd = new ArrayList<SyndEntry>();
-			  synd = feed.getEntries();
-			  Set<String> setURL = hashT.keySet();
-			  for (String key : setURL){
+			  Set<String> setTitle = hashT.keySet();
+			  for (String key : setTitle){
 			   System.out.println(hashT.get(key));
-			  //Stream 
+			   //URL
+			   URL feedURL = new URL("https://www.lavanguardia.com/mvc/feed/rss/home");
+			   //Feed
+			   SyndFeedInput input = new SyndFeedInput();
+			   SyndFeed feed = input.build(new XmlReader(feedURL));
+			   System.out.println(feed.getTitle());
+			   //Lista  que tiene el retorno de getEntries
+			   List<SyndEntry> synd = new ArrayList<SyndEntry>();
+			   synd = feed.getEntries();
+
+
+			   //Stream
 			   Stream<SyndEntry> stream = synd.stream();
 			   stream
 			   .limit(5)
