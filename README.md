@@ -1,26 +1,43 @@
-tp marzo24
+# Tarea Práctica 24 Marzo
+1DAW IES Polígono Sur
 
-Trabajar individualmente, nadie va a pasar vergüenza, al contrario,
-la vergüenza se genera cuando el que lee encuentra buena parte de los
-trabajos iguales; tener presente que con estos ejercicios nos preparamos
-para realizar exámenes (esos que se hacen en el aula, en un tiempo 
-asignado e individualmente).
+# Rome
+
+Este proyecto trata sobre utilizar un framework de Java llamado Rome para feeds RSS y Atom.
+
+## Getting Started
+
+Compilamos el programa
+```
+$ javac -cp /jars/*:. parserRome.java
+```
+Quiero destacar que la ruta /jars/ es mi ruta donde sitúo las dependencias del proyecto
+Ejecutamos
+```
+java -cp /jars/*:. parserRome
+```
+
+### Prerequisites
+
+Que cosas necesitamos antes de empezar
+
+Las librerías necesarias son:
+```
+jdom2
+slf4j
+rome-utils
+rome
+```
+Se pueden obtener mediante esta url:
+https://mvnrepository.com
 
 
-Fecha de entrega: no tiene
+## Authors
 
-Se tiene
---------
+* **Carmen Rufo** - *Initial work* 
+* **Javier Bernal** - *Final work* 
 
-La aplicación desplegada (código python) https://immense-coast-33387.herokuapp.com/
+## License
 
-La aplicación de escritorio:
-     ut99/aplicandoLibreria/pythonFeedParser/immense-coast-33387/headlines_noWeb.py
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-
-Se pide
--------
-
-Aplicación similar escrita en java usando librería rometools.
-Home del proyecto:
-https://rometools.github.io/rome/
