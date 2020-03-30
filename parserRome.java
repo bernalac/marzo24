@@ -7,32 +7,43 @@ import com.rometools.rome.feed.synd.SyndEntry;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Stream;
+import java.util.Hashtable;
 
 public class parserRome {
 	public static void main(String[] args) {
+		//Diccionarios
+                Hashtable<String, String> hash = new Hashtable<String, String>();
+		hash.put("elp", "http://ep00.epimg.net/rss/tags/ultimas_noticias.xml");
+		hash.put("bbc", "http://feeds.bbci.co.uk/news/rss.xml");
+		hash.put("lav", "http://www.lavanguardia.com/mvc/feed/rss/politica");
+		hash.put("cnn", "http://rss.cnn.com/rss/edition.rss");
+		hash.put("abc", "https://sevilla.abc.es/rss/feeds/Sevilla_Sevilla.xml");
+		hash.put("elm", "http://estaticos.elmundo.es/elmundo/rss/portada.xml");
+
+                Hashtable<String, String> hashT = new Hashtable<String, String>();
+                hashT.put("elp", "El país");
+                hashT.put("bbc", "BBC Headlines");
+                hashT.put("lav", "La vanguardia");
+                hashT.put("cnn", "CNN Headlines");
+                hashT.put("abc", "ABC: Sevilla");
+                hashT.put("elm", "El mundo");
+
 
 		try {
-			URL feedURL = new URL("https://www.lavanguardia.com/mvc/feed/rss/home");
+			  URL feedURL = new URL("https://www.lavanguardia.com/mvc/feed/rss/home");
 
-			SyndFeedInput input = new SyndFeedInput();
-			SyndFeed feed = input.build(new XmlReader(feedURL));
-			System.out.println(feed.getTitle());
-			List<SyndEntry> synd = new ArrayList<SyndEntry>();
-			synd = feed.getEntries();
-				//for (SyndEntry entry : synd) {
-				  //System.out.println("Título de la noticia: ");
-				  //System.out.println(entry.getTitle());
-				  //System.out.println("Link de la noticia: ");
-				  //System.out.println(entry.getLink());
-				  //System.out.println("Descripción de la noticia: ");
-				  //System.out.println(entry.getDescription().getValue());
-				  //System.out.println();
-				//}
-			Stream<SyndEntry> stream = synd.stream();
-			stream
-			.limit(5)
-			.forEach(s -> System.out.println("\nTítulo de la noticia: \n" + s.getTitle() + "\n Link de la noticia: \n" + s.getLink() + "\n Descripción de la noticia: \n" + s.getDescription().getValue() + "\n"));
-
+			  //Feed
+			  SyndFeedInput input = new SyndFeedInput();
+			  SyndFeed feed = input.build(new XmlReader(feedURL));
+			  System.out.println(feed.getTitle());
+			  //Lista  que tiene el retorno de getEntries
+			  List<SyndEntry> synd = new ArrayList<SyndEntry>();
+			  synd = feed.getEntries();
+			  //Stream 
+			  Stream<SyndEntry> stream = synd.stream();
+			  stream
+			  .limit(5)
+			  .forEach(s -> System.out.println("\nTítulo de la noticia: \n" + s.getTitle() + "\n Link de la noticia: \n" + s.getLink() + "\n Descripción de la noticia: \n" + s.getDescription().getValue() + "\n"));
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
