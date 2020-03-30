@@ -17,18 +17,18 @@ public class parserRome {
                 Hashtable<String, String> hash = new Hashtable<String, String>();
 		hash.put("elp", "http://ep00.epimg.net/rss/tags/ultimas_noticias.xml");
 		hash.put("bbc", "http://feeds.bbci.co.uk/news/rss.xml");
-		//hash.put("lav", "http://www.lavanguardia.com/mvc/feed/rss/home");
-		//hash.put("cnn", "http://rss.cnn.com/rss/edition.rss");
+		hash.put("lav", "https://www.lavanguardia.com/mvc/feed/rss/home");
+		hash.put("cnn", "http://rss.cnn.com/rss/edition_europe.rss");
 		hash.put("abc", "https://sevilla.abc.es/rss/feeds/Sevilla_Sevilla.xml");
-		//hash.put("elm", "http://estaticos.elmundo.es/elmundo/rss/portada.xml");
+		hash.put("elm", "https://e00-elmundo.uecdn.es/elmundo/rss/espana.xml");
 
                 Hashtable<String, String> hashT = new Hashtable<String, String>();
                 hashT.put("elp", "El país");
                 hashT.put("bbc", "BBC Headlines");
-                //hashT.put("lav", "La vanguardia");
-                //hashT.put("cnn", "CNN Headlines");
+                hashT.put("lav", "La vanguardia");
+                hashT.put("cnn", "CNN Headlines");
                 hashT.put("abc", "ABC: Sevilla");
-                //hashT.put("elm", "El mundo");
+                hashT.put("elm", "El mundo");
 
 
 		try {
@@ -36,10 +36,11 @@ public class parserRome {
  			  Set<String> setURL = hash.keySet();
 
 			  for (String key : setTitle){
-			   System.out.println(hashT.get(key));
+  			   System.out.println(hashT.get(key));
+
 			   //URL
 			   for (String key1 : setURL) {
-			    URL feedURL = new URL(hash.get(key));
+			    URL feedURL = new URL(hash.get(key1));
 			    //Feed
 			    SyndFeedInput input = new SyndFeedInput();
     			    //SyndFeed feed = input.build(new InputStreamReader(feedURL.openStream()));
