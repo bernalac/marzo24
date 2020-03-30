@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 import java.util.Hashtable;
+import java.util.Set;
 
 public class parserRome {
 	public static void main(String[] args) {
@@ -39,11 +40,15 @@ public class parserRome {
 			  //Lista  que tiene el retorno de getEntries
 			  List<SyndEntry> synd = new ArrayList<SyndEntry>();
 			  synd = feed.getEntries();
+			  Set<String> setURL = hashT.keySet();
+			  for (String key : setURL){
+			   System.out.println(hashT.get(key));
 			  //Stream 
-			  Stream<SyndEntry> stream = synd.stream();
-			  stream
-			  .limit(5)
-			  .forEach(s -> System.out.println("\nTítulo de la noticia: \n" + s.getTitle() + "\n Link de la noticia: \n" + s.getLink() + "\n Descripción de la noticia: \n" + s.getDescription().getValue() + "\n"));
+			   Stream<SyndEntry> stream = synd.stream();
+			   stream
+			   .limit(5)
+			   .forEach(s -> System.out.println("\nTítulo de la noticia: \n" + s.getTitle() + "\n Link de la noticia: \n" + s.getLink() + "\n Descripción de la noticia: \n" + s.getDescription().getValue() + "\n"));
+			  }
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
